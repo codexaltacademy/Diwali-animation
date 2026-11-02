@@ -1,0 +1,399 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden;
+    background: #100b12;
+    color: #f9e8c5;
+    font-family: Arial, sans-serif;
+    transition: background 1s ease;
+}
+
+body.lit {
+    background: radial-gradient(circle at 50% 45%, #382016, #160d13 70%);
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #e9bd72;
+    opacity: .3;
+    animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+.card {
+    position: relative;
+    width: min(100%, 430px);
+    min-height: 690px;
+    padding: 38px 28px 25px;
+    text-align: center;
+    background: linear-gradient(145deg, #27151c, #180e15);
+    border: 1px solid #b78a4b55;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 25px 80px #0008;
+    transition: box-shadow 1s ease, border-color 1s ease;
+}
+
+.card.lit {
+    border-color: #d9a957;
+    box-shadow: 0 0 70px #e9a84625, 0 25px 80px #0008;
+}
+
+.card-border {
+    position: absolute;
+    inset: 10px;
+    border: 1px solid #d2a35c35;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.top-label {
+    position: relative;
+    color: #d8ad70;
+    font-size: 9px;
+    letter-spacing: 4px;
+}
+
+.heading {
+    position: relative;
+    margin-top: 35px;
+}
+
+.heading p {
+    color: #c9ad8e;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    font-style: italic;
+}
+
+.heading h1 {
+    margin-top: 7px;
+    color: #f5e5c8;
+    font-family: Georgia, serif;
+    font-size: clamp(42px, 12vw, 62px);
+    font-weight: 500;
+    letter-spacing: 3px;
+}
+
+.heading h1 span {
+    color: #d8a24f;
+}
+
+.diya-area {
+    position: relative;
+    height: 205px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.glow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #ffad3b;
+    filter: blur(65px);
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.diya {
+    position: relative;
+    width: 125px;
+    height: 115px;
+    z-index: 2;
+}
+
+.diya-bowl {
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    width: 125px;
+    height: 60px;
+    border-radius: 15px 15px 65px 65px;
+    background: linear-gradient(180deg, #e5a04b, #a74b23 70%, #632b1b);
+    border-bottom: 5px solid #71331e;
+    box-shadow: inset 0 7px 9px #ffdf8a55;
+}
+
+.diya-bowl::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    border-radius: 50%;
+    background: #f4bd69;
+}
+
+.diya-base {
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+    width: 90px;
+    height: 12px;
+    border-radius: 50%;
+    background: #9b4b27;
+}
+
+.flame {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: -15px;
+    width: 29px;
+    height: 48px;
+    transform: translateX(-50%) scale(0);
+    transform-origin: bottom center;
+    opacity: 0;
+    border-radius: 50% 50% 45% 45%;
+    background: linear-gradient(to top, #ff8a23, #ffe58a, #fff6d7);
+    box-shadow: 0 0 22px #ffb43d;
+}
+
+.flame span {
+    position: absolute;
+    left: 9px;
+    top: 13px;
+    width: 11px;
+    height: 25px;
+    border-radius: 50%;
+    background: #fff9d9;
+}
+
+.card.lit .glow {
+    opacity: .65;
+}
+
+.card.lit .flame {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    animation: flicker .35s ease-in-out infinite alternate;
+}
+
+.instruction {
+    position: relative;
+    margin-top: 5px;
+    color: #d7b78d;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    font-style: italic;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.match-button {
+    position: relative;
+    margin-top: 24px;
+    padding: 13px 25px;
+    border: 1px solid #d5a65e;
+    border-radius: 50px;
+    color: #f7d99e;
+    background: #d69a3c18;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.match-button span {
+    margin-right: 7px;
+}
+
+.match-button:hover {
+    background: #d69a3c;
+    color: #25130e;
+    transform: translateY(-3px);
+}
+
+.celebration {
+    position: relative;
+    margin-top: 22px;
+    animation: reveal .8s ease both;
+}
+
+.celebration h2 {
+    color: #f6e6c7;
+    font-family: Georgia, serif;
+    font-size: 26px;
+    letter-spacing: 3px;
+}
+
+.celebration h2 span {
+    color: #e6b45d;
+}
+
+.celebration p {
+    margin-top: 9px;
+    color: #c7a98a;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.firework-button,
+.wish-button {
+    display: block;
+    width: 220px;
+    max-width: 100%;
+    margin: 16px auto 0;
+    padding: 13px;
+    border: none;
+    border-radius: 5px;
+    background: #d9a44f;
+    color: #28170e;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.wish-button {
+    margin-top: 10px;
+    border: 1px solid #d4a35b;
+    background: transparent;
+    color: #f3d5a1;
+}
+
+.firework-button:hover,
+.wish-button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+}
+
+.wish-message {
+    position: absolute;
+    z-index: 5;
+    inset: 50% 25px auto;
+    transform: translateY(-50%);
+    padding: 30px 22px;
+    border: 1px solid #d8ae6c;
+    border-radius: 10px;
+    background: #f7ead4;
+    color: #572a29;
+    box-shadow: 0 15px 50px #0009;
+    animation: reveal .4s ease both;
+}
+
+.wish-star {
+    color: #b67b35;
+    font-size: 24px;
+}
+
+.wish-message p {
+    margin: 15px 0;
+    font-family: Georgia, serif;
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+.wish-message button {
+    padding: 9px 22px;
+    border: none;
+    border-radius: 30px;
+    background: #6b2931;
+    color: #fff1d7;
+}
+
+.hidden {
+    display: none;
+}
+
+.particle {
+    position: fixed;
+    z-index: 10;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color);
+    box-shadow: 0 0 10px var(--color);
+    pointer-events: none;
+    animation: explode 1.3s ease-out forwards;
+}
+
+@keyframes flicker {
+    from {
+        rotate: -4deg;
+        scale: .95 1;
+    }
+    to {
+        rotate: 4deg;
+        scale: 1.05 1.08;
+    }
+}
+
+@keyframes twinkle {
+    from {
+        opacity: .1;
+        transform: scale(.6);
+    }
+    to {
+        opacity: .9;
+        transform: scale(1.5);
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        translate: 0 15px;
+    }
+    to {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+@keyframes explode {
+    from {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .card {
+        min-height: 650px;
+        padding: 32px 20px 25px;
+    }
+
+    .diya-area {
+        height: 180px;
+    }
+
+    .footer {
+        letter-spacing: 2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
